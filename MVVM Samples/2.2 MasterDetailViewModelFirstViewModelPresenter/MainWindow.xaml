@@ -9,18 +9,22 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525"
         d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel, IsDesignTimeCreatable=True}">
-<Grid>
-    <Grid.ColumnDefinitions>
-        <ColumnDefinition />
-        <ColumnDefinition />
-    </Grid.ColumnDefinitions>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
 
-    <viewModelPresenter:ViewModelPresenter 
-        ViewModel="{Binding UserListViewModel}" 
+        <!--ViewModelPresenter - наследуемый от ContentControl класс
+    с объявленным в нем свойством ViewModel, при изменении которого
+    Свойству Content ContentContrl'a устанавливается смаппеное с ViewModel представление
+    -->
+        <viewModelPresenter:ViewModelPresenter
+        ViewModel="{Binding UserListViewModel}"
         Grid.Column="0" />
 
-    <viewModelPresenter:ViewModelPresenter 
-        ViewModel="{Binding UserDetailsViewModel}" 
+        <viewModelPresenter:ViewModelPresenter
+        ViewModel="{Binding UserDetailsViewModel}"
         Grid.Column="1" />
-</Grid>
+    </Grid>
 </Window>

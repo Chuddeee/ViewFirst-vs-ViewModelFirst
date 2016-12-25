@@ -2,6 +2,9 @@
 
 namespace _3.Common.ViewTypeResolver
 {
+    /// <summary>
+    /// Сервис получения типа View сопоставленного с типом ViewModel посредством соглашения по именованию и расположению
+    /// </summary>
     public class NamingConventionViewTypeResolver : IViewTypeResolver
     {
         public Type ResolveViewType(Type viewModelType)

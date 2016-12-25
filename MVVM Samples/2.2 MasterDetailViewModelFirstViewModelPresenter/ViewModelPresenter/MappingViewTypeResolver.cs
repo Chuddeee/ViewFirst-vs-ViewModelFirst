@@ -6,17 +6,21 @@ using System.Threading.Tasks;
 
 namespace _2._2_MasterDetailViewModelFirstViewModelPresenter.ViewModelPresenter
 {
-public class MappingViewTypeResolver : IViewTypeResolver
-{
-    private Dictionary<Type, Type> _typesMapping = new Dictionary<Type, Type>();
-    public Type ResolveViewType(Type viewModelType)
+    /// <summary>
+    /// Сервис получения типа View сопоставленного с типом ViewModel посредством предварительному маппингу
+    /// </summary>
+    public class MappingViewTypeResolver : IViewTypeResolver
     {
-        return _typesMapping[viewModelType];
-    }
+        private Dictionary<Type, Type> _typesMapping = new Dictionary<Type, Type>();
 
-    public void Register<T1, T2>()
-    {
-        _typesMapping.Add(typeof(T2), typeof(T1));
+        public Type ResolveViewType(Type viewModelType)
+        {
+            return _typesMapping[viewModelType];
+        }
+
+        public void Register<T1, T2>()
+        {
+            _typesMapping.Add(typeof(T2), typeof(T1));
+        }
     }
-}
 }

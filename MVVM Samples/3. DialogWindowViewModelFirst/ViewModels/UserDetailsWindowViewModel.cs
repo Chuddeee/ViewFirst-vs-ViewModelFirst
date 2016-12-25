@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Windows.Input;
-using Common;
 
 namespace _3.DialogWindowViewModelFirst.ViewModels
 {
@@ -8,6 +8,8 @@ namespace _3.DialogWindowViewModelFirst.ViewModels
     {
         private User _user;
         private ICommand _closeCommand;
+
+        public event EventHandler Closed;
 
         public User User
         {
@@ -26,19 +28,19 @@ namespace _3.DialogWindowViewModelFirst.ViewModels
             get { return _closeCommand ?? (_closeCommand = new SimpleCommand(OnClose)); }
         }
 
-        public event EventHandler Closed;
-        
+        // Делегат хранящий вызов метод Close для окна с которым ассоциирована эта ViewModel
+
+        protected virtual void RaiseClosed()
+        {
+            Closed?.Invoke(this, EventArgs.Empty);
+        }
+
         private void OnClose(object obj)
         {
             //здесь может быть долгая асинхронная задача: валидация, сохранение итд
 
             IsClosed = true;
             RaiseClosed();
-        }
-
-        protected virtual void RaiseClosed()
-        {
-            Closed?.Invoke(this, EventArgs.Empty);
         }
     }
 }

@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace _2._2_MasterDetailViewModelFirstViewModelPresenter.ViewModelPresenter
 {
-public interface IViewTypeResolver
-{
-    Type ResolveViewType(Type viewModelType);
-}
+    /// <summary>
+    /// Интерфейс сервиса реализующего получение типа View сопоставленного с типом ViewModel
+    /// </summary>
+    public interface IViewTypeResolver
+    {
+        Type ResolveViewType(Type viewModelType);
+    }
 }

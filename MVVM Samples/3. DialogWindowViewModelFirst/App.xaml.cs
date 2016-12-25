@@ -1,16 +1,16 @@
-﻿using System;
+﻿using _3.Common.ViewTypeResolver;
+using _3.DialogWindowViewModelFirst.ViewModels;
+using _3.DialogWindowViewModelFirst.Views;
+using Common;
+using Microsoft.Practices.ServiceLocation;
+using Microsoft.Practices.Unity;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using Common;
-using Microsoft.Practices.ServiceLocation;
-using Microsoft.Practices.Unity;
-using _3.Common.ViewTypeResolver;
-using _3.DialogWindowViewModelFirst.ViewModels;
-using _3.DialogWindowViewModelFirst.Views;
 
 namespace _3.DialogWindowViewModelFirst
 {
@@ -20,8 +20,14 @@ namespace _3.DialogWindowViewModelFirst
     public partial class App : Application
     {
         private UnityContainer _container;
+
         protected override void OnStartup(StartupEventArgs e)
         {
+            /*
+             * В этом примере все идентично прошлым, ключевое на что необходимо обратить внимание:
+             *      * метод OnShowDetails расположенном в UserListViewModel - порождение дочернего окна
+             *      * UserDetailsWindow CodeBehind и UserDetailsWindowViewModel - обработка закрытия окна
+             */
             base.OnStartup(e);
 
             _container = new UnityContainer();
@@ -33,7 +39,6 @@ namespace _3.DialogWindowViewModelFirst
 
             _container.RegisterType<UserDetailsViewModel>(new ContainerControlledLifetimeManager());
             _container.RegisterType<UserListViewModel>(new ContainerControlledLifetimeManager());
-
 
             var mappingResolver = new MappingViewTypeResolver();
             mappingResolver.RegisterTypeMapping<UserDetailsView, UserDetailsViewModel>();

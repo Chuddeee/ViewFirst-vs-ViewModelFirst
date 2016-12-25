@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Windows.Input;
+﻿using _3.DialogWindowViewModelFirst.Views;
 using Common;
 using Microsoft.Practices.Unity;
-using _3.DialogWindowViewModelFirst.Views;
+using System.Collections.Generic;
+using System.Windows.Input;
 
 namespace _3.DialogWindowViewModelFirst.ViewModels
 {
@@ -33,7 +33,6 @@ namespace _3.DialogWindowViewModelFirst.ViewModels
         public ICommand ShowDetailsCommand
         {
             get { return _showDetailsCommand ?? (_showDetailsCommand = new SimpleCommand(OnShowDetails)); }
-            
         }
 
         private void OnShowDetails(object obj)
@@ -41,10 +40,9 @@ namespace _3.DialogWindowViewModelFirst.ViewModels
             var editWindow = new UserDetailsWindow();
 
             var editViewModel = new UserDetailsWindowViewModel();
-            editViewModel.User = (User) obj;
-            editViewModel.Closed += (sender, args) => editWindow.Close();
+            editViewModel.User = (User)obj;
+            editViewModel.Closed += (sender, args) => editWindow.Close(); // В модель представления дочернего окна передается лямбда выражение описывающее закрытие этого же дочернего окна
 
-            
             editWindow.DataContext = editViewModel;
             editWindow.Show();
         }

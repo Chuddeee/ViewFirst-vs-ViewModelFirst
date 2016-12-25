@@ -1,13 +1,17 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Collections.Generic;
 using System.Windows.Controls;
-using Common;
 
 namespace _3.Common.ViewTypeResolver
 {
+    /// <summary>
+    /// Сервис получения типа View сопоставленного с типом ViewModel посредством предварительному маппингу
+    /// </summary>
     public class MappingViewTypeResolver : IViewTypeResolver
     {
         private readonly Dictionary<Type, Type> _typesMapping = new Dictionary<Type, Type>();
+
         public Type ResolveViewType(Type viewModelType)
         {
             return _typesMapping[viewModelType];
